@@ -105,6 +105,10 @@ a.Button:hover {
     background-color: #54c07a;
 }
 
+#WelcomeContent{
+    background:#FFFFFF;
+    z-index: 999;
+}
 #Logo {
     width: 33%;
     height: 9ex;
@@ -154,9 +158,6 @@ body>#Logo {
 
 body>#Menu {
     height: 9ex;
-}
-
-{
 }
 
 #Search {
