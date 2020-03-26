@@ -461,7 +461,9 @@ a.Button:hover {
     color: #000;
     background-color: #54c07a;
 }
-
+#Content{
+    background: #FFFFFF;
+}
 #WelcomeContent{
     background:#FFFFFF;
     z-index: 999;
