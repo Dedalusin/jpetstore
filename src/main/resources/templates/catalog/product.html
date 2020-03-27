@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/jpetstore.css" type="text/css" media="screen">
+</head>
+<body>
+<div th:replace="common/top"></div>
+<div id="content">
+    <div id="Catalog">
+        <h2 th:text="${product.name}></h2>
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Product ID</th>
+                <th>Description</th>
+                <th>List Price</th>
+                <th>&nbsp;</th>
+            </tr>
+
+                <tr th:each="item:${itemList}">
+                    <td th:each="item">
+                        <a href="#" th:text="${item.itemId}"></a><!--个product 可能有多个item比如雌雄性别的-->
+                    </td>
+                    <td th:text="${item.product.productId}">
+                        ${item.product.productId}<!--通过item来返回一个product-->
+                    </td>
+                    <td th:text="${item.attribute1}${item.attribute2} ${item.attribute3}
+                        ${item.attribute4} ${item.attribute5}${sessionScope.product.name}">
+                    </td>
+<!--                    <td th:>-->
+<!--                        <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00" />&lt;!&ndash;以fmt格式来显示价钱&ndash;&gt;-->
+<!--                    </td>-->
+                    <td th: th:text="'$'+${item.listPrice}"></td>
+                    <td>
+                        <a class="Button" href="addItemToCart?workingItemId=${item.itemId}" th:text="Add to Cart"></a>
+                    </td>
+                </tr>
+
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div th:replace="common/bottom"></div>
+</body>
+</html>

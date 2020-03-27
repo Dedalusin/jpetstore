@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/jpetstore.css" type="text/css" media="screen">
+</head>
+<body>
+<div th:replace="common/top"></div>
+    <div id="content">
+        <div id="BackLink">
+            <a href="#">Return to Main Menu</a>
+        </div>
+
+        <div id="Catalog">
+
+            <h2 th:text="${category.name}">category的name属性，这个并不会输出</h2>
+
+            <table>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                </tr>
+
+                <tr th:each="product:${productList}">
+                    <td ><a href="#" th:text="${product.productId}"></a></td>
+                    <td th:text="${product.name}"></td>
+                </tr>
+
+<!--                <c:forEach var="product" items="${sessionScope.productList}">-->
+<!--                    <tr>-->
+<!--                        <td>-->
+<!--                            <a href="viewProduct?productId=${product.productId}">${product.productId}</a>-->
+<!--                        </td>-->
+<!--                        <td>${product.name}</td>-->
+<!--                    </tr>-->
+<!--                </c:forEach>-->
+            </table>
+
+        </div>
+    </div>
+<div th:replace="common/bottom"></div>
+</body>
+</html>
