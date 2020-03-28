@@ -9,8 +9,24 @@
 <div th:replace="common/top"></div>
 <div id="content">
 
+    <div id="Catalog">
+        <form action="/account/signon" method="post">
+            <p>Please enter your username and password.</p>
+            <p>
+                Username:<input type="text" name="username"><br/>
+                Password:<input type="password" name="password">
+                VerificationCode:<input type="text" id="inputCode" size="5" maxlength="4"/>
+                <span class="code1" name="verification" onclick="createCode(4)" id="checkCode">ABCD</span>
+            </p>
+            <p th:if="${msg!=null}" th:text="${msg}"></p>
+            <input type="submit" value="Login">
+        </form>
 
+        Need a user name and password?
+        <a href="#">Register Now!</a>
+    </div>
 </div>
 <div th:replace="common/bottom"></div>
+<script type="text/javascript" src="../js/verificationCode.js" charset = "UTF-8"></script>
 </body>
 </html>

@@ -8,41 +8,47 @@
 <body>
 <div th:replace="common/top"></div>
 <div id="content">
-    <div id="Catalog">
-        <h2 th:text="${product.name}></h2>
-        <table>
-            <tr>
-                <th>Item ID</th>
-                <th>Product ID</th>
-                <th>Description</th>
-                <th>List Price</th>
-                <th>&nbsp;</th>
-            </tr>
+    <div id="BackLink">
+        <a th:href="'/catalog/viewCategory?categoryId='+${product.categoryId}">
+            Return to <label th:text="${product.categoryId}">Category ID</label>
+        </a>
+    </div>
+    <div id="Content">
+        <div id="BackLink">
+            <a th:href="'/catalog/viewCategory?categoryId='+${product.categoryId}">
+                Return to <label th:text="${product.categoryId}">Category ID</label>
+            </a>
+        </div>
 
-                <tr th:each="item:${itemList}">
-                    <td th:each="item">
-                        <a href="#" th:text="${item.itemId}"></a><!--个product 可能有多个item比如雌雄性别的-->
-                    </td>
-                    <td th:text="${item.product.productId}">
-                        ${item.product.productId}<!--通过item来返回一个product-->
-                    </td>
-                    <td th:text="${item.attribute1}${item.attribute2} ${item.attribute3}
-                        ${item.attribute4} ${item.attribute5}${sessionScope.product.name}">
-                    </td>
-<!--                    <td th:>-->
-<!--                        <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00" />&lt;!&ndash;以fmt格式来显示价钱&ndash;&gt;-->
-<!--                    </td>-->
-                    <td th: th:text="'$'+${item.listPrice}"></td>
-                    <td>
-                        <a class="Button" href="addItemToCart?workingItemId=${item.itemId}" th:text="Add to Cart"></a>
-                    </td>
+        <div id="Catalog">
+
+            <h2 th:text="${product.name}">Product Name</h2>
+
+            <table>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Product ID</th>
+                    <th>Description</th>
+                    <th>List Price</th>
+                    <th>&nbsp;</th>
                 </tr>
 
-            <tr>
-                <td>
-                </td>
-            </tr>
-        </table>
+                <tr th:each="item:${itemList}">
+                    <td>
+                        <!--个product 可能有多个item比如雌雄性别的-->
+                        <a th:href="'/catalog/viewItem?itemId='+${item.itemId}" th:text="${item.itemId}" >Item ID</a>
+                    </td>
+                    <!--通过item来返回一个product-->
+                    <td th:text="${item.product.productId}">Product ID</td>
+                    <td th:text="${item.attribute1}">
+                        Item Attributes
+                    </td>
+                    <!-- <td th:text="${item.listPrice}">Item List Price</td>以fmt格式来显示价钱&ndash;&gt;-->
+                    <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}">Item List Price</td>
+                    <td><a th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}">Add to Cart</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 <div th:replace="common/bottom"></div>
