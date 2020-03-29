@@ -1,8 +1,10 @@
 package org.csu.jpetstore.service;
 
 import org.csu.jpetstore.domain.Category;
+import org.csu.jpetstore.domain.Item;
 import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.persistence.CategoryMapper;
+import org.csu.jpetstore.persistence.ItemMapper;
 import org.csu.jpetstore.persistence.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,27 @@ import java.util.List;
 public class CatalogService {
     @Autowired
     private CategoryMapper categoryMapper;
-
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private ItemMapper itemMapper;
+    public String findProductListString(String name){
+        List<Product> nameList=searchProductList(name);
+        String res="";
+        for (int i=0;i<nameList.size();i++) {
+            if(i>0){
+                res+=","+nameList.get(i).getName();
+            }else{
+                res+=nameList.get(i).getName();
+            }
+        }
+        return res;
+    }
+    public List<Category> getCategoryList() {
+        return categoryMapper.getCategoryList();
+    }
 
-    public Category getCategory(String categoryId){
+    public Category getCategory(String categoryId) {
         return categoryMapper.getCategory(categoryId);
     }
 
@@ -28,4 +46,22 @@ public class CatalogService {
     public List<Product> getProductListByCategory(String categoryId) {
         return productMapper.getProductListByCategory(categoryId);
     }
+
+    // TODO enable using more than one keyword
+    public List<Product> searchProductList(String keyword) {
+        return productMapper.searchProductList("%" + keyword.toLowerCase() + "%");
+    }
+
+    public List<Item> getItemListByProduct(String productId) {
+        return itemMapper.getItemListByProduct(productId);
+    }
+
+    public Item getItem(String itemId) {
+        return itemMapper.getItem(itemId);
+    }
+
+    public boolean isItemInStock(String itemId) {
+        return itemMapper.getInventoryQuantity(itemId) > 0;
+    }
+
 }

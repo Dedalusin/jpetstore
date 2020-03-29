@@ -9,6 +9,8 @@ public class Product implements Serializable {
   private String categoryId;
   private String name;
   private String description;
+  private String descriptionImage;
+  private String descriptionText;
 
   public String getProductId() {
     return productId;
@@ -40,6 +42,22 @@ public class Product implements Serializable {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getDescriptionImage() {
+    return descriptionImage;
+  }
+
+  public void setDescriptionImage(String descriptionImage) {
+    this.descriptionImage = descriptionImage;
+  }
+
+  public String getDescriptionText() {
+    return descriptionText;
+  }
+
+  public void setDescriptionText(String descriptionText) {
+    this.descriptionText = descriptionText;
   }
 
   public String toString() {
