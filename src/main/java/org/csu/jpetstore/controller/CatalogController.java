@@ -68,7 +68,7 @@ public class CatalogController {
             List<Product> productList = catalogService.searchProductList(keyword.toLowerCase());
             processProductDescription(productList);
             model.addAttribute("productList",productList);
-            return "catalog/search_products";
+            return "catalog/searchProducts";
         }
 
     }

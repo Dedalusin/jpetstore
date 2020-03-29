@@ -14,12 +14,12 @@
             <p>Please enter your username and password.</p>
             <p>
                 Username:<input type="text" name="username"><br/>
-                Password:<input type="password" name="password">
+                Password:<input type="password" name="password"><br/>
                 VerificationCode:<input type="text" id="inputCode" size="5" maxlength="4"/>
-                <span class="code1" name="verification" onclick="createCode(4)" id="checkCode">ABCD</span>
+                <span class="code" name="verification" onclick="createCode(4)" id="checkCode">ABCD</span>
             </p>
             <p th:if="${msg!=null}" th:text="${msg}"></p>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" onclick="onSubmit()">
         </form>
 
         Need a user name and password?

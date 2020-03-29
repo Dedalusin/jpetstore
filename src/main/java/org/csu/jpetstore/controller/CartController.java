@@ -21,6 +21,7 @@ import java.util.Iterator;
 public class CartController {
     @Autowired
     private CatalogService catalogService;
+    @Autowired
     private Cart cart;
 
     @GetMapping("viewCart")
@@ -31,7 +32,10 @@ public class CartController {
 
     @GetMapping("addItemToCart")
     public String addItemToCart(String workingItemId, Model model){
-        cart=(Cart) model.getAttribute("cart");
+//        cart=(Cart) model.getAttribute("cart");
+//        if (cart == null){
+//            cart = new Cart();
+//        }
         if(cart.containsItemId(workingItemId)){
             cart.incrementQuantityByItemId(workingItemId);
         }else{
@@ -45,7 +49,7 @@ public class CartController {
 
     @GetMapping("removeItemFromCart")
     public String removeItemFromCart(String workingItemId, Model model){
-        cart=(Cart) model.getAttribute("cart");
+//        cart=(Cart) model.getAttribute("cart");
         Item item = cart.removeItemById(workingItemId);
         model.addAttribute("cart",cart);
         if(item == null){
@@ -58,7 +62,7 @@ public class CartController {
 
     @PostMapping("updateCartQuantities")
     public String updateCartQuantities(HttpServletRequest request, Model model){
-        cart=(Cart) model.getAttribute("cart");
+//        cart=(Cart) model.getAttribute("cart");
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()){
             CartItem cartItem = cartItems.next();

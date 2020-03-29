@@ -681,3 +681,23 @@ body>#Banner {
     background-color:#ccc;
     text-align:left;
 }
+
+.code
+{
+    font-family:Arial;
+    font-style:italic;
+    color:blue;
+    font-size:15px;
+    border:0;
+    padding:2px 3px;
+    letter-spacing:3px;
+    font-weight:bolder;
+    /*float:left;*/
+    cursor:pointer;
+    width:75px;
+    height:22px;
+    line-height:30px;
+    text-align:center;
+    vertical-align:middle;
+    background-color:#D8B7E3;
+}
