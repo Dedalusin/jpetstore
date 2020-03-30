@@ -7,8 +7,30 @@
 </head>
 <body>
 <div th:replace="common/top"></div>
-<div id="content">
+<div id="Catalog">
+    <form action="/account/newAccount" method="post">
+        <h3>User Information</h3>
 
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td><input type="text" name="username" id="username" onblur="register()"></td>
+                <td><span id="isExistInfo"></span></td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td><input type="text" name="repeatedPassword"></td>
+            </tr>
+        </table>
+
+        <div th:replace="includeAccountFields"></div>
+
+        <input type="submit" name="newAccount" value="Save Account Information">
+    </form>
 
 </div>
 <div th:replace="common/bottom"></div>

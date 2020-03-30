@@ -7,8 +7,38 @@
 </head>
 <body>
 <div th:replace="common/top"></div>
-<div id="content">
+<div id="Catalog">
+    <form action="/account/editAccount" method="post">
+        <h3>User Information</h3>
 
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td>${sessionScope.account.username}</td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td><input type="text" name="repeatedPassword"></td>
+            </tr>
+            <tr>
+                <td>VerificationCode:</td>
+                <td>
+                    <input type="text" id="inputCode" size="5" maxlength="4"/>
+                    <span class="code1" name="verification" onclick="createCode(4)" id="checkCode">ABCD</span>
+                </td>
+            </tr>
+        </table>
+        <div th:replace="includeAccountFields"></div>
+        <input type="submit" value="Save Account Information" name="editAccount">
+
+    </form>
+    <a href="#">My Orders</a>
+</div>
+<script type="text/javascript" src="../js/verificationCode.js" charset = "UTF-8"></script>
 
 </div>
 <div th:replace="common/bottom"></div>
