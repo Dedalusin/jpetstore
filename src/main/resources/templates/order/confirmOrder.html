@@ -8,7 +8,96 @@
 <body>
 <div th:replace="common/top"></div>
 <div id="content">
+    <div id="BackLink">
+        <a href="/catalog/index">Return to Main Menu</a>
+    </div>
 
+    <div id="Catalog">Please confirm the information below and then
+        press continue...
+
+        <table>
+            <tr>
+                <th align="center" colspan="2"><font size="4"><b>Order</b></font>
+                    <br />
+                    <font size="3"><b th:text="${#dates.format(${order.orderDate},'yyyy-MM-dd')}">
+<!--                        <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />-->
+                    </b></font>
+                </th>
+            </tr>
+
+            <tr>
+                <th colspan="2">Billing Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.billToFirstName}" />
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.billToLastName}" />
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.billAddress1}" />
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.billAddress2}" />
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.billCity}" />
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.billState}" />
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.billZip}" />
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.billCountry}" />
+            </tr>
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.shipToFirstName}" />
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.shipToLastName}" />
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.shipAddress1}" />
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.shipAddress2}" />
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.shipCity}" />
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.shipState}" />
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.shipZip}" />
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.shipCountry}" />
+            </tr>
+
+        </table>
+        <input type="submit" href="order/confirmOrder" name="confirmed" >Confirmed</a>
+    </div>
 
 </div>
 <div th:replace="common/bottom"></div>

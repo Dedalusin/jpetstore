@@ -8,7 +8,54 @@
 <body>
 <div th:replace="common/top"></div>
 <div id="content">
+    <div id="Catalog">
+        <form action="order/confirmOrder" method="post">
 
+        <table>
+            <tr>
+                <th colspan=2>Shipping Address</th>
+            </tr>
+
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.shipToFirstName}"/>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.shipToLastName}" />
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.shipAddress1}" size="40"/>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.shipAddress2}" size="40" />
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.shipCity}" />
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.shipState}"  size="4" />
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.shipZip}" size="10"/>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.shipCountry}" size="15" />
+            </tr>
+
+
+        </table>
+
+        <input type="submit" name="newOrder" value="Continue" />
+
+    </]form>
+    </div>
 
 </div>
 <div th:replace="common/bottom"></div>

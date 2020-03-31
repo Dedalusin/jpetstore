@@ -8,7 +8,27 @@
 <body>
 <div th:replace="common/top"></div>
 <div id="content">
+    <h2>My Orders</h2>
 
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+        </tr>
+
+<!--        <c:forEach var="order" items="${sessionScope.orderList}">-->
+            <tr th:each="order:${orderList}">
+                <td>
+                    <a th:href="'viewOrder?orderId=' + ${order.orderId}">${order.orderId}</a>
+                </td>
+                <td th:text="${#dates.format(${order.orderDate},'yyyy-MM-dd hh-mm-ss')}">
+<!--                    <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>-->
+                <td th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
+<!--                <fmt:formatNumber value="${order.totalPrice}" pattern="$#,##0.00" /></td>-->
+            </tr>
+<!--        </c:forEach>-->
+    </table>
 
 </div>
 <div th:replace="common/bottom"></div>
