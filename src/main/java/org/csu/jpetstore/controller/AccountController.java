@@ -22,7 +22,7 @@ public class AccountController {
     private AccountService accountService;
     @Autowired
     private CatalogService catalogService;
-    //跳转至登录界面
+    //跳转至登录
     @GetMapping("signonForm")
     public String signonForm(){
         return "account/signon";
@@ -48,6 +48,9 @@ public class AccountController {
         }
     }
 
+    //跳转至注册界面 这里我用的是registerForm
+    @GetMapping("registerForm")
+    public String registerForm(){return "account/newAccountForm";}
     //注册
 
     //更新账户
