@@ -463,8 +463,13 @@ a.Button:hover {
 }
 #Content{
     background: #FFFFFF;
+    text-align:center;
 }
 #WelcomeContent{
+    background:#FFFFFF;
+    z-index: 999;
+}
+.WelcomeContent{
     background:#FFFFFF;
     z-index: 999;
 }
