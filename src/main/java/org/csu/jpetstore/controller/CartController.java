@@ -80,5 +80,6 @@ public class CartController {
         model.addAttribute("cart",cart);
         return "cart/cart";
     }
+    //提交CART，付款属于Order部分了
 
 }
