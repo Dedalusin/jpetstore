@@ -7,9 +7,9 @@
 </head>
 <body>
 <div th:replace="common/top"></div>
-<div id="catalog">
+<div id="Catalog">
 
-    <form action="order/confirmOrder" method="post">
+    <form action="/order/continueOrder" method="post" th:object="${order}">
         <table>
             <tr>
                 <th colspan=2>Payment Details</th>
@@ -25,12 +25,14 @@
             <tr>
                 <td>Card Number:</td>
                 <td>
-                    <input type="text" name="creditCard">* Use a fake number!
+<!--                    <input type="text" name="creditCard">* Use a fake number!-->
+                    <input type="text" th:value="*{creditCard}">* Use a fake number!
                 </td>
             </tr>
             <tr>
                 <td>Expiry Date (MM/YYYY):</td>
-                <td><input type="text" name="expiryDate"></td>
+<!--                <td><input type="text" name="expiryDate"></td>-->
+                <td><input type="text" th:value="*{expiryDate}"></td>
             </tr>
             <tr>
                 <th colspan=2>Billing Address</th>
@@ -38,35 +40,36 @@
 
             <tr>
                 <td>First name:</td>
-                <td th:text="${order.billToFirstName}"></td>
+                <td><input type="text" th:value="*{billToFirstName}"></td>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td th:text="${order.billToLastName}"></td>
+                <td><input type="text" th:value="*{billToLastName}"></td>
             </tr>
             <tr>
                 <td>Address 1:</td>
-                <td th:text="${order.billAddress1}"></td>
+                <td><input type="text" th:value="*{billAddress1}"></td>
             </tr>
             <tr>
                 <td>Address 2:</td>
-                <td th:text="${order.billAddress2}"></td>
+                <td><input type="text" th:value="*{billAddress2}"></td>
             </tr>
             <tr>
                 <td>City:</td>
-                <td th:text="${order.billCity}"></td>
+                <td><input type="text" th:value="*{billCity}"></td>
             </tr>
             <tr>
                 <td>State:</td>
-                <td th:text="${order.billState}"></td>
+                <td><input type="text" th:value="*{billState}"></td>
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td th:text="${order.billZip}"></td>
+                <td><input type="text" th:value="*{billZip}"></td>
             </tr>
             <tr>
                 <td>Country:</td>
-                <td th:text="${order.billCountry}"></td>
+            <!-- TODO 国家显示有问题-->
+                <td><input type="text" th:value="*{billCountry}"></td>
             </tr>
             <tr>
 

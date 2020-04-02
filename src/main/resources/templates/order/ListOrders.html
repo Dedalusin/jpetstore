@@ -22,7 +22,7 @@
                 <td>
                     <a th:href="'viewOrder?orderId=' + ${order.orderId}">${order.orderId}</a>
                 </td>
-                <td th:text="${#dates.format(${order.orderDate},'yyyy-MM-dd hh-mm-ss')}">
+                <td th:text="${#dates.format(order.orderDate,'yyyy-MM-dd hh-mm-ss')}">
 <!--                    <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>-->
                 <td th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
 <!--                <fmt:formatNumber value="${order.totalPrice}" pattern="$#,##0.00" /></td>-->

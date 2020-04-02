@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Jpetstore</title>
     <link rel="stylesheet" href="../css/jpetstore.css" type="text/css" media="screen">
 </head>
 <body>
@@ -21,6 +21,7 @@
         </form>
         Need a user name and password?
         <a href="/account/registerForm">Register Now!</a> or <a href="/login"> Use gitee to login</a>
+<!--    //TODO 使用第三方账户登录还需要在services层以及mapper写一些代码，有时间再搞了-->
 </div>
 <div th:replace="common/bottom"></div>
 <script type="text/javascript" src="../js/verificationCode.js" charset = "UTF-8"></script>
