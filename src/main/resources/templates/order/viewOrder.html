@@ -16,7 +16,7 @@
 
         <table>
             <tr>
-                <th align="center" colspan="2" th:text="'Order' + ${order.orderId} + ${#dates.format(${order.orderDate},'yyyy-MM-dd')}">
+                <th align="center" colspan="2" th:text="'Order' + ${order.orderId} + ${#dates.format(order.orderDate,'yyyy-MM-dd')}">
 <!--                    <fmt:formatDate value="${sessionScope.order.orderDate}"-->
 <!--                                    pattern="yyyy/MM/dd hh:mm:ss" />-->
                 </th>
@@ -127,15 +127,10 @@
 <!--                        <c:forEach var="lineItem" items="${sessionScope.order.lineItems}">-->
                             <tr th:each="lineItem:${order.lineItems}">
                                 <td>
-                                    <a th:href="'/catalog/viewItem?itemId='+ ${lineItem.item.itemId}">${lineItem.item.itemId}</a>
+                                    <a th:href="'/catalog/viewItem?itemId='+ ${lineItem.item.itemId}" th:text="${lineItem.item.itemId}"></a>
                                 </td>
-                                <td th:if="${lineItem.item != null}" th:text="${lineItem.item.attribute1}
-                                    ${lineItem.item.attribute2}
-                                    ${lineItem.item.attribute3}
-                                    ${lineItem.item.attribute4}
-                                    ${lineItem.item.attribute5}
-                                    ${lineItem.item.product.name}"></td>
-                                 <td th:if="${lineItem.item == null}" th:text="description unavailable"></td>
+                                <td th:if="${lineItem.item != null}" th:text="${lineItem.item.attribute1} + ${lineItem.item.product.name}"></td>
+                                <td th:if="${lineItem.item == null}" th:text="description unavailable"></td>
 <!--                                    <c:if test="${lineItem.item != null}">-->
 <!--                                    ${lineItem.item.attribute1}-->
 <!--                                    ${lineItem.item.attribute2}-->
@@ -146,9 +141,10 @@
 <!--                                </c:if><c:if test="${lineItem.item == null}">-->
 <!--                                    <i>{description unavailable}</i>-->
 <!--                                </c:if>-->
-
+                                <td th:text="${lineItem.quantity}"></td>
                                 <td th:text="'$'+${#numbers.formatDecimal(lineItem.unitPrice,1,2)}"></td>
-                                <td th:text="'$'+${#numbers.formatDecimal(lineItem.total,1,2)}"></td>
+<!--                                            下边这个total 原版的jpetstore也没显示出来-->
+<!--                                <td th:text="'$'+${#numbers.formatDecimal(lineItem.total,1,2)}"></td>-->
 <!--                                <td><fmt:formatNumber value="${lineItem.unitPrice}"-->
 <!--                                                      pattern="$#,##0.00" /></td>-->
 <!--                                <td><fmt:formatNumber value="${lineItem.total}"-->
@@ -156,7 +152,7 @@
                             </tr>
 <!--                        </c:forEach>-->
                         <tr>
-                            <th colspan="5">Total: <label th:text="'Sub Total:$'+${#numbers.formatDecimal(order.total,1,2)}"></label>
+                            <th colspan="5">Total: <label th:text="'Sub Total:$'+${#numbers.formatDecimal(order.totalPrice,1,2)}"></label>
 <!--                                <fmt:formatNumber value="${sessionScope.order.totalPrice}" pattern="$#,##0.00" /></th>-->
                         </tr>
                     </table>

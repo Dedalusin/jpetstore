@@ -9,8 +9,8 @@
 <div th:replace="common/top"></div>
 <div id="content">
     <div id="Catalog">
-        <form action="order/confirmOrder" method="post">
-
+<!--        <form action="order/confirmOrder" method="post">-->
+        <form action="/order/confirmOrder" method="post" th:object="${order}">
         <table>
             <tr>
                 <th colspan=2>Shipping Address</th>
@@ -18,35 +18,35 @@
 
             <tr>
                 <td>First name:</td>
-                <td th:text="${order.shipToFirstName}"/>
+                <td th:text="*{shipToFirstName}"/>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td th:text="${order.shipToLastName}" />
+                <td th:text="*{shipToLastName}" />
             </tr>
             <tr>
                 <td>Address 1:</td>
-                <td th:text="${order.shipAddress1}" size="40"/>
+                <td th:text="*{shipAddress1}" size="40"/>
             </tr>
             <tr>
                 <td>Address 2:</td>
-                <td th:text="${order.shipAddress2}" size="40" />
+                <td th:text="*{shipAddress2}" size="40" />
             </tr>
             <tr>
                 <td>City:</td>
-                <td th:text="${order.shipCity}" />
+                <td th:text="*{shipCity}" />
             </tr>
             <tr>
                 <td>State:</td>
-                <td th:text="${order.shipState}"  size="4" />
+                <td th:text="*{shipState}"  size="4" />
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td th:text="${order.shipZip}" size="10"/>
+                <td th:text="*{shipZip}" size="10"/>
             </tr>
             <tr>
                 <td>Country:</td>
-                <td th:text="${order.shipCountry}" size="15" />
+                <td th:text="*{shipCountry}" size="15" />
             </tr>
 
 
@@ -54,7 +54,7 @@
 
         <input type="submit" name="newOrder" value="Continue" />
 
-    </]form>
+    </form>
     </div>
 
 </div>
