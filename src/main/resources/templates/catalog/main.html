@@ -12,7 +12,7 @@
             <div id="WelcomeContent" th:if="${session.account} == null">
                 Welcome to MyPetStore!
             </div>
-            <div class="WelcomeContent" th:if="${session.account} != null" th:text="'Welcome to MyPetStore '+ ${account.firstName}">Welcome to MyPetStore!
+            <div class="WelcomeContent" th:if="(${session.account} != null and ${authenticated})" th:text="'Welcome to MyPetStore '+ ${account.firstName}">Welcome to MyPetStore!
             </div>
 
         <div id="Main">
