@@ -1,6 +1,5 @@
 package org.csu.jpetstore.controller;
 
-import com.alipay.api.domain.Car;
 import org.csu.jpetstore.domain.Account;
 import org.csu.jpetstore.domain.Cart;
 import org.csu.jpetstore.domain.Order;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class OrderController {
     @Autowired
     OrderService orderService;
-    //MyOders的跳转,需要传orderList,由于这部分在Account中，暂时无法实现
+    //MyOders的跳转
     @GetMapping("listOrder")
     public String viewOrder(Model model)
     {
@@ -41,7 +40,8 @@ public class OrderController {
     }
     //点击continue后,order的值被设置完,然后再在confirmOrder中展示，不需要中间操作。跳转
     @PostMapping("continueOrder")
-    public String confirmOrder(Order order,Model model){
+    public String confirmOrder(String shippingAddressRequired,Order order,Model model){
+        if(shippingAddressRequired!=""){ return "order/shippingForm"; }
         //TODO 需要根据Ship to different address...是否勾选 来判断跳转的页面
         model.addAttribute("order",order);
         System.out.print(order.getOrderDate());
