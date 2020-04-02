@@ -8,17 +8,17 @@
 <body>
 <div th:replace="common/top"></div>
 <div id="Catalog">
-    <form action="/account/editAccount" method="post">
+    <form action="/account/editAccount" method="post" th:object="${account}">
         <h3>User Information</h3>
 
         <table>
             <tr>
                 <td>User ID:</td>
-                <td>${sessionScope.account.username}</td>
+                <td th:text="*{username}"></td>
             </tr>
             <tr>
                 <td>New password:</td>
-                <td><input type="text" name="password"></td>
+                <td><input type="password" th:field="*{password}" /></td>
             </tr>
             <tr>
                 <td>Repeat password:</td>
@@ -32,7 +32,7 @@
                 </td>
             </tr>
         </table>
-        <div th:replace="includeAccountFields"></div>
+        <div th:replace="account/includeAccountFields::fields"> </div>
         <input type="submit" value="Save Account Information" name="editAccount">
 
     </form>
