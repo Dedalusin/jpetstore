@@ -7,10 +7,7 @@ import org.csu.jpetstore.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,7 +39,6 @@ public class AccountController {
             List<Product> myList =catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
             boolean authenticated = true;
             model.addAttribute("account", loginAccount);
-            model.addAttribute("myList",myList);
             model.addAttribute("authenticated",authenticated);
             return "catalog/main";
         }
@@ -67,12 +63,13 @@ public class AccountController {
     }
     //看账号名称是否存在
     @GetMapping("usernameIsExist")
+    @ResponseBody
     public String usernameIsExist(String username){
-        if(accountService.usernameIsExist(username))
-        {
+        boolean result=accountService.usernameIsExist(username);
+        if(result){
             return "Exist";
-        }
-        else{
+        }else{
+            System.out.println("noExist");
             return "Not Exist";
         }
     }

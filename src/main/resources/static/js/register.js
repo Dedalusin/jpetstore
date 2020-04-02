@@ -6,6 +6,7 @@ function register() {
     xhr.open("GET","usernameIsExist?username="+username,true);//1
     xhr.send(null);//2
 }
+//还需要添加username为空的情况
 function process() {
     if (xhr.readyState == 4){
         if (xhr.status == 200){

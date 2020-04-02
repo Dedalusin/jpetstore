@@ -36,8 +36,14 @@ public class OrderController {
     }
     //点击continue后,order的值被设置完,然后再在confirmOrder中展示，不需要中间操作。跳转
     @PostMapping("continueOrder")
-    public String confirmOrder(){
-        return "order/confirmOrder";
+    public String confirmOrder(String shippingAddressRequired){
+        if(shippingAddressRequired==""){
+            System.out.println(shippingAddressRequired);
+            return "order/shippingForm";
+        }else{
+            return "order/confirmOrder";
+        }
+
     }
     //点击confirm后，order需提交至数据库，并且重置cart
     @PostMapping("confirmOrder")
