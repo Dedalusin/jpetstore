@@ -56,6 +56,7 @@ public class GiteeLoginController {
 //        return JSON.toJSONString(user);
         Account giteeAccount = new Account();
         giteeAccount.setFirstName(user.getString("name"));
+        giteeAccount.setUsername(user.getString("name"));
         System.out.print(giteeAccount.getFirstName());
         boolean authenticated = true;
         model.addAttribute("account", giteeAccount);

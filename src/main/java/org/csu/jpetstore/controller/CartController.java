@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 
 @Controller
-//@SessionScope
 @SessionAttributes("cart")
 @RequestMapping("/cart/")
 public class CartController {
@@ -35,11 +34,16 @@ public class CartController {
 //        if (cart == null){
 //            cart = new Cart();
 //        }
+        Item item = catalogService.getItem(workingItemId);
+        if (item.getQuantity()<=0){
+            model.addAttribute("msg","This item is sold out.Please view other items.");
+            return "common/error";
+        }
         if(cart.containsItemId(workingItemId)){
             cart.incrementQuantityByItemId(workingItemId);
         }else{
             boolean isInStock = catalogService.isItemInStock(workingItemId);
-            Item item = catalogService.getItem(workingItemId);
+//            Item item = catalogService.getItem(workingItemId);
             cart.addItem(item,isInStock);
         }
         model.addAttribute("cart",cart);
@@ -59,26 +63,27 @@ public class CartController {
         }
     }
 
-    @PostMapping("updateCartQuantities")
-    public String updateCartQuantities(HttpServletRequest request, Model model){
-//        cart=(Cart) model.getAttribute("cart");
-        Iterator<CartItem> cartItems = cart.getAllCartItems();
-        while (cartItems.hasNext()){
-            CartItem cartItem = cartItems.next();
-            String itemId = cartItem.getItem().getItemId();
-            try{
-                int quantity = Integer.parseInt(request.getParameter(itemId));
-                cart.setQuantityByItemId(itemId,quantity);
-                if(quantity < 1){
-                    cartItems.remove();
-                }
-            }catch (Exception e){
-
-            }
-        }
-        model.addAttribute("cart",cart);
-        return "cart/cart";
-    }
+    /*已经合并到Order的newOrder部分实现*/
+//    @PostMapping("updateCartQuantities")
+//    public String updateCartQuantities(HttpServletRequest request, Model model){
+////        cart=(Cart) model.getAttribute("cart");
+//        Iterator<CartItem> cartItems = cart.getAllCartItems();
+//        while (cartItems.hasNext()){
+//            CartItem cartItem = cartItems.next();
+//            String itemId = cartItem.getItem().getItemId();
+//            try{
+//                int quantity = Integer.parseInt(request.getParameter(itemId));
+//                cart.setQuantityByItemId(itemId,quantity);
+//                if(quantity < 1){
+//                    cartItems.remove();
+//                }
+//            }catch (Exception e){
+//
+//            }
+//        }
+//        model.addAttribute("cart",cart);
+//        return "cart/cart";
+//    }
     //提交CART，付款属于Order部分了
 
 }

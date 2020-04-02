@@ -1,6 +1,7 @@
 package org.csu.jpetstore.controller;
 
 import org.csu.jpetstore.domain.Account;
+import org.csu.jpetstore.domain.Cart;
 import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.service.AccountService;
 import org.csu.jpetstore.service.CatalogService;
@@ -50,9 +51,10 @@ public class AccountController {
         Account loginAccount = new Account();
         List<Product> myList = null;
         boolean authenticated = false;
-        model.addAttribute("account", loginAccount);
+        model.addAttribute("account", null);
         model.addAttribute("myList", myList);
         model.addAttribute("authenticated", authenticated);
+        model.addAttribute("cart",new Cart());
         return "catalog/main";
     }
 
@@ -78,6 +80,7 @@ public class AccountController {
     @PostMapping("newAccount")
     public String newAccount(Account registerAccount,Model model){
         accountService.insertAccount(registerAccount);
+        model.addAttribute("authenticated",true);
         model.addAttribute("account",registerAccount);
         return "catalog/main";
     }
