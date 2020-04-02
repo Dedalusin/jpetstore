@@ -25,7 +25,7 @@ public class OrderController {
     {
         Account account=(Account) model.getAttribute("account");
         model.addAttribute("orderList",orderService.getListOrder(account.getUsername()));
-        return "order/ListOrder";
+        return "order/ListOrders";
     }
     //付款
     //关于ship的部分还未实装
