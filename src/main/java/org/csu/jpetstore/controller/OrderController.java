@@ -67,13 +67,28 @@ public class OrderController {
         model.addAttribute("order",order);
         return "order/confirmOrder";
     }
-    //点击confirm后，order需提交至数据库，并且重置cart
 
-    @PostMapping("confirmOrder")
+    //点击confirm后，order需提交至数据库，并且重置cart
+    @GetMapping("confirmOrder")
     public String viewOrder(Order order,Model model){
         orderService.insertOrder(order);
         model.addAttribute("cart",new Cart());
         model.addAttribute("order",order);
         return "order/viewOrder";
+    }
+    @GetMapping("/viewOrder")
+    public String viewOrder(String orderId,Model model){
+        if (orderId!=null){
+            int orderid=Integer.parseInt(orderId);
+            Order order = orderService.getOrder(orderid);
+            model.addAttribute("order",order);
+            return "order/viewOrder";
+        }
+        else {
+            String msg="orderID为null";
+            model.addAttribute("msg",msg);
+            return "common/error";
+        }
+
     }
 }

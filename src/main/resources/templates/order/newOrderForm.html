@@ -26,13 +26,13 @@
                 <td>Card Number:</td>
                 <td>
 <!--                    <input type="text" name="creditCard">* Use a fake number!-->
-                    <input type="text" th:value="*{creditCard}">* Use a fake number!
+                    <input type="text" th:field="*{creditCard}">* Use a fake number!
                 </td>
             </tr>
             <tr>
                 <td>Expiry Date (MM/YYYY):</td>
 <!--                <td><input type="text" name="expiryDate"></td>-->
-                <td><input type="text" th:value="*{expiryDate}"></td>
+                <td><input type="text" th:field="*{expiryDate}"></td>
             </tr>
             <tr>
                 <th colspan=2>Billing Address</th>
@@ -40,35 +40,35 @@
 
             <tr>
                 <td>First name:</td>
-                <td><input type="text" th:value="*{billToFirstName}"></td>
+                <td><input type="text" th:field="*{billToFirstName}"></td>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td><input type="text" th:value="*{billToLastName}"></td>
+                <td><input type="text" th:field="*{billToLastName}"></td>
             </tr>
             <tr>
                 <td>Address 1:</td>
-                <td><input type="text" th:value="*{billAddress1}"></td>
+                <td><input type="text" th:field="*{billAddress1}"></td>
             </tr>
             <tr>
                 <td>Address 2:</td>
-                <td><input type="text" th:value="*{billAddress2}"></td>
+                <td><input type="text" th:field="*{billAddress2}"></td>
             </tr>
             <tr>
                 <td>City:</td>
-                <td><input type="text" th:value="*{billCity}"></td>
+                <td><input type="text" th:field="*{billCity}"></td>
             </tr>
             <tr>
                 <td>State:</td>
-                <td><input type="text" th:value="*{billState}"></td>
+                <td><input type="text" th:field="*{billState}"></td>
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td><input type="text" th:value="*{billZip}"></td>
+                <td><input type="text" th:field="*{billZip}"></td>
             </tr>
             <tr>
                 <td>Country:</td>
-                <td><input type="text" th:value="*{billCountry}"></td>
+                <td><input type="text" th:field="*{billCountry}"></td>
             </tr>
             <tr>
 

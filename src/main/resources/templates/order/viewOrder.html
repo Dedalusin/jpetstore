@@ -112,7 +112,9 @@
                 <td th:text="${order.courier}" /></td>
             </tr>
             <tr>
-                <td colspan="2">Status: <c:out value="${sessionScope.order.status}" /></td>
+<!--                <td colspan="2">Status: <c:out value="${sessionScope.order.status}" /></td>-->
+                <td>Status:</td>
+                <td th:text="${order.status}"></td>
             </tr>
             <tr>
                 <td colspan="2">
