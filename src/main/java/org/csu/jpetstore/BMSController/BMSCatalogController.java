@@ -63,4 +63,45 @@ public class BMSCatalogController {
         catalogService.deleteCategory(categoryId);
         return ResultFactory.successResult(null,"成功");
     }
+
+    @PostMapping("/product")
+    public ResultFactory addProduct(@RequestBody Product addCateForm) {
+        catalogService.addProduct(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @PutMapping("/product")
+    public ResultFactory updateProduct(@RequestBody Product addCateForm) {
+        catalogService.updateProduct(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @DeleteMapping("/product")
+    public ResultFactory deleteProduct(@RequestParam String productId) {
+        catalogService.deleteProduct(productId);
+        return ResultFactory.successResult(null,"成功");
+    }
+
+
+    @PostMapping("/item")
+    public ResultFactory addItem(@RequestBody Item addCateForm) {
+        catalogService.addItem(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @PutMapping("/item")
+    public ResultFactory updateItem(@RequestBody Item addCateForm) {
+        catalogService.updateItem(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @DeleteMapping("/item")
+    public ResultFactory deleteItem(@RequestParam String itemId) {
+        catalogService.deleteItem(itemId);
+        return ResultFactory.successResult(null,"成功");
+    }
+
+    @GetMapping("/allItem")
+    public ResultFactory getAllItem(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize){
+        PageHelper.startPage(pagenum, pageSize);
+        List<Item> itemList = catalogService.getAllItem();
+        PageInfo<Item> pageInfo = new PageInfo<>(itemList);
+        return ResultFactory.successResult(pageInfo,"成功");
+    }
 }

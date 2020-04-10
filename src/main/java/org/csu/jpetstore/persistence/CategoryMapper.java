@@ -17,4 +17,5 @@ public interface CategoryMapper {
     void updateCategory(Category category);
 
     void deleteCategory(String categoryId);
+
 }

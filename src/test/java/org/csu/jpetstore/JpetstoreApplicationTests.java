@@ -3,6 +3,7 @@ package org.csu.jpetstore;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.csu.jpetstore.domain.Category;
+import org.csu.jpetstore.domain.Item;
 import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.service.CatalogService;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootTest
@@ -64,5 +66,18 @@ class JpetstoreApplicationTests {
     void testDeleteCategory(){
         String categoryId = "TIGERS";
         catalogService.deleteCategory(categoryId);
+    }
+    @Test
+    void testAddItem(){
+        Item item = new Item();
+        item.setQuantity(1);
+        item.setAttribute1("222");
+        item.setItemId("AAA");
+        item.setProductId("AV-CB-01");
+        item.setListPrice(new BigDecimal(1));
+        item.setSupplierId(1);
+        item.setStatus("P");
+        catalogService.addItem(item);
+
     }
 }
