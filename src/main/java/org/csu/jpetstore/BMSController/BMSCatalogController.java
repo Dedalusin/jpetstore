@@ -10,7 +10,6 @@ import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.service.CatalogService;
 import org.csu.jpetstore.utils.ResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,5 +48,19 @@ public class BMSCatalogController {
         PageInfo<Item> pageInfo = new PageInfo<>(itemList);
         return ResultFactory.successResult(pageInfo,"查询成功");
     }
-
+    @PostMapping("/category")
+    public ResultFactory addCategory(@RequestBody Category addCateForm) {
+        catalogService.addCategory(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @PutMapping("/category")
+    public ResultFactory updateCategory(@RequestBody Category addCateForm) {
+        catalogService.updateCategory(addCateForm);
+        return ResultFactory.successResult(null,"成功");
+    }
+    @DeleteMapping("/category")
+    public ResultFactory deleteCategory(@RequestParam String categoryId) {
+        catalogService.deleteCategory(categoryId);
+        return ResultFactory.successResult(null,"成功");
+    }
 }

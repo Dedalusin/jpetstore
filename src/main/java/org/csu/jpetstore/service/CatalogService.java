@@ -64,4 +64,15 @@ public class CatalogService {
         return itemMapper.getInventoryQuantity(itemId) > 0;
     }
 
+    public void addCategory(Category category){
+        categoryMapper.addCategory(category);
+    }
+
+    public void updateCategory(Category category){
+        categoryMapper.updateCategory(category);
+    }
+
+    public void deleteCategory(String categoryId){
+        categoryMapper.deleteCategory(categoryId);
+    }
 }

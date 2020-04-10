@@ -41,4 +41,28 @@ class JpetstoreApplicationTests {
         PageInfo<Category> pageInfo = new PageInfo<>(categoryList);
         System.out.print(pageInfo);
     }
+
+    @Test
+    void testaddCategory(){
+        Category category = new Category();
+        category.setCategoryId("TIGERS");
+        category.setName("Tigers");
+        category.setDescription("6666666");
+        catalogService.addCategory(category);
+    }
+
+    @Test
+    void testUpdateCategory(){
+        Category category = new Category();
+        category.setCategoryId("TIGERS");
+        category.setName("Tigers");
+        category.setDescription("11111111");
+        catalogService.updateCategory(category);
+    }
+
+    @Test
+    void testDeleteCategory(){
+        String categoryId = "TIGERS";
+        catalogService.deleteCategory(categoryId);
+    }
 }
