@@ -1,5 +1,7 @@
 package org.csu.jpetstore;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.csu.jpetstore.domain.Category;
 import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.service.CatalogService;
@@ -30,5 +32,13 @@ class JpetstoreApplicationTests {
     void testProduct(){
         List<Product> productsList = catalogService.getProductListByCategory("BIRDS");
         System.out.print(productsList.size());
+    }
+
+    @Test
+    void testPageInfo(){
+        PageHelper.startPage(1, 3);
+        List<Category> categoryList= catalogService.getCategoryList();
+        PageInfo<Category> pageInfo = new PageInfo<>(categoryList);
+        System.out.print(pageInfo);
     }
 }
