@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+// TODO 改成RESTFUL的api格式
 @RestController
 @RequestMapping("/catalog")
 public class BMSCatalogController {
     @Autowired
     private CatalogService catalogService;
 
-    @GetMapping("/category")
+    @GetMapping("/categories")
     public ResultFactory viewCategory(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize) {
-        JSONObject data = new JSONObject();
+//        JSONObject data = new JSONObject();
 //        System.out.println(params.toString());
 //        int pageNum = (int)params.get("pagenum");
 //        int pageSize = (int)params.get("pagesize");
@@ -31,73 +31,73 @@ public class BMSCatalogController {
         List<Category> categoryList= catalogService.getCategoryList();
         PageInfo<Category> pageInfo = new PageInfo<>(categoryList);
 //        JSONObject jsonCategory= (JSONObject)pageInfo.toString();
-        data.put("children",pageInfo);
+//        data.put("children",pageInfo);
         return ResultFactory.successResult(pageInfo,"查询成功");
     }
-    @GetMapping("/product")
-    public ResultFactory viewPoroduct(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize,@RequestParam(value = "categoryId")String categoryId) {
+    @GetMapping("/products")
+    public ResultFactory viewProduct(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize,@RequestParam(value = "categoryId")String categoryId) {
         PageHelper.startPage(pagenum, pageSize);
         List<Product> productsList= catalogService.getProductListByCategory(categoryId);
         PageInfo<Product> pageInfo = new PageInfo<>(productsList);
         return ResultFactory.successResult(pageInfo,"查询成功");
     }
-    @GetMapping("/item")
+    @GetMapping("/items")
     public ResultFactory viewItem(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize,@RequestParam(value = "productId")String productId) {
         PageHelper.startPage(pagenum, pageSize);
         List<Item> itemList= catalogService.getItemListByProduct(productId);
         PageInfo<Item> pageInfo = new PageInfo<>(itemList);
         return ResultFactory.successResult(pageInfo,"查询成功");
     }
-    @PostMapping("/category")
+    @PostMapping("/categories")
     public ResultFactory addCategory(@RequestBody Category addCateForm) {
         catalogService.addCategory(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @PutMapping("/category")
+    @PutMapping("/categories")
     public ResultFactory updateCategory(@RequestBody Category addCateForm) {
         catalogService.updateCategory(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @DeleteMapping("/category")
+    @DeleteMapping("/categories")
     public ResultFactory deleteCategory(@RequestParam String categoryId) {
         catalogService.deleteCategory(categoryId);
         return ResultFactory.successResult(null,"成功");
     }
 
-    @PostMapping("/product")
+    @PostMapping("/products")
     public ResultFactory addProduct(@RequestBody Product addCateForm) {
         catalogService.addProduct(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @PutMapping("/product")
+    @PutMapping("/products")
     public ResultFactory updateProduct(@RequestBody Product addCateForm) {
         catalogService.updateProduct(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @DeleteMapping("/product")
+    @DeleteMapping("/products")
     public ResultFactory deleteProduct(@RequestParam String productId) {
         catalogService.deleteProduct(productId);
         return ResultFactory.successResult(null,"成功");
     }
 
 
-    @PostMapping("/item")
+    @PostMapping("/items")
     public ResultFactory addItem(@RequestBody Item addCateForm) {
         catalogService.addItem(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @PutMapping("/item")
+    @PutMapping("/items")
     public ResultFactory updateItem(@RequestBody Item addCateForm) {
         catalogService.updateItem(addCateForm);
         return ResultFactory.successResult(null,"成功");
     }
-    @DeleteMapping("/item")
+    @DeleteMapping("/items")
     public ResultFactory deleteItem(@RequestParam String itemId) {
         catalogService.deleteItem(itemId);
         return ResultFactory.successResult(null,"成功");
     }
 
-    @GetMapping("/allItem")
+    @GetMapping("/allItems")
     public ResultFactory getAllItem(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize){
         PageHelper.startPage(pagenum, pageSize);
         List<Item> itemList = catalogService.getAllItem();

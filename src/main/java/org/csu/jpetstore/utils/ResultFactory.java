@@ -1,24 +1,22 @@
 package org.csu.jpetstore.utils;
 
 public class ResultFactory {
-    private boolean status;
+    private int status;
     private String msg;
     private Object data;
 
     public ResultFactory() {
     }
 
-    public ResultFactory(boolean status, String msg, Object data) {
+    public ResultFactory(int status, String msg, Object data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
+    public int getStatus() { return status; }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -39,10 +37,10 @@ public class ResultFactory {
     }
 
     public static ResultFactory successResult(Object data,String msg) {
-        return new ResultFactory(true, msg, data);
+        return new ResultFactory(200, msg, data);
     }
 
-    public static ResultFactory failedResult(String msg) {
-        return new ResultFactory(false, msg, null);
+    public static ResultFactory failedResult(int code, String msg) {
+        return new ResultFactory(code, msg, null);
     }
 }
