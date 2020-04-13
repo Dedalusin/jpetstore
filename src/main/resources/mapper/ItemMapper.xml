@@ -107,7 +107,10 @@
             LISTPRICE,
             UNITCOST,
             SUPPLIER AS supplierId,
-            PRODUCTID,
+            PRODUCTID AS "product.productId",
+            NAME AS "product.name",
+            DESCN AS "product.description",
+            CATEGORY AS "product.categoryId",
             STATUS,
             ATTR1 AS attribute1,
             ATTR2 AS attribute2,
@@ -115,6 +118,6 @@
             ATTR4 AS attribute4,
             ATTR5 AS attribute5,
             QTY AS quantity
-        FROM item natural join inventory
+        FROM item natural join inventory natural join product
     </select>
 </mapper>

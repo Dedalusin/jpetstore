@@ -104,4 +104,13 @@ public class BMSCatalogController {
         PageInfo<Item> pageInfo = new PageInfo<>(itemList);
         return ResultFactory.successResult(pageInfo,"成功");
     }
+
+    // 已在前端实现
+//    @GetMapping("/Items/{keywords}")
+//    public ResultFactory searchItem(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize,@PathVariable String keywords){
+//        PageHelper.startPage(pagenum, pageSize);
+//        List<Item> itemList = catalogService.searchItemList(keywords);
+//        PageInfo<Item> pageInfo = new PageInfo<>(itemList);
+//        return ResultFactory.successResult(pageInfo,"成功");
+//    }
 }

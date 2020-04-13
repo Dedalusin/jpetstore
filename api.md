@@ -114,7 +114,6 @@
 
 | 参数名   | 参数说明           | 备注                                                         |
 | -------- | ------------------ | ------------------------------------------------------------ |
-| type     | [1,2,3]            | 值：1，2，3 分别表示显示一层二层三层分类列表<br />【可选参数】如果不传递，则默认获取所有级别的分类 |
 | pagenum  | 当前页码值         | 【可选参数】如果不传递，则默认获取所有分类                   |
 | pagesize | 每页显示多少条数据 | 【可选参数】如果不传递，则默认获取所有分类                   |
 
@@ -122,54 +121,58 @@
 
 | 参数名    | 参数说明     | 备注 |
 | --------- | ------------ | ---- |
-| cat_id    | 分类 ID      |      |
-| cat_name  | 分类名称     |      |
-| cat_pid   | 分类父 ID    |      |
-| cat_level | 分类当前层级 |      |
+| total     | 结果数量     |      |
+| list      | category数组     |      |
 
 - 响应数据
 
 ```json
 {
-    "data": [
-        {
-            "cat_id": 1,
-            "cat_name": "大家电",
-            "cat_pid": 0,
-            "cat_level": 0,
-            "cat_deleted": false,
-            "children": [
-                {
-                    "cat_id": 3,
-                    "cat_name": "电视",
-                    "cat_pid": 1,
-                    "cat_level": 1,
-                    "cat_deleted": false,
-                    "children": [
-                        {
-                            "cat_id": 6,
-                            "cat_name": "曲面电视",
-                            "cat_pid": 3,
-                            "cat_level": 2,
-                            "cat_deleted": false
-                        },
-                        {
-                            "cat_id": 7,
-                            "cat_name": "海信",
-                            "cat_pid": 3,
-                            "cat_level": 2,
-                            "cat_deleted": false
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "meta": {
-        "msg": "获取成功",
-        "status": 200
+    "status": 200,
+    "msg": "查询成功",
+    "data": {
+        "total": 8,
+        "list": [
+            {
+                "categoryId": "tet",
+                "name": "123",
+                "description": "234"
+            },
+            {
+                "categoryId": "TIGERS",
+                "name": "Tigers",
+                "description": "6666666"
+            },
+            {
+                "categoryId": "TTTT",
+                "name": "T",
+                "description": "11"
+            }
+        ],
+        "pageNum": 2,
+        "pageSize": 5,
+        "size": 3,
+        "startRow": 6,
+        "endRow": 8,
+        "pages": 2,
+        "prePage": 1,
+        "nextPage": 0,
+        "isFirstPage": false,
+        "isLastPage": true,
+        "hasPreviousPage": true,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1,
+            2
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 2,
+        "firstPage": 1,
+        "lastPage": 2
     }
 }
+
 ```
 
 ### 1.6.2. 添加分类
@@ -201,7 +204,7 @@
 }
 ```
 
-### 1.6.3. 根据 id 查询分类
+### 1.6.3. 根据 id 查询Product
 
 - 请求路径：categories/:id
 - 请求方法：get
@@ -277,600 +280,6 @@
     }
 }
 ```
-
-## 1.7. 分类参数管理
-
-## 1.8. 商品管理
-
-### 1.8.1. 商品列表数据
-
-- 请求路径：goods
-- 请求方法：get
-- 请求参数
-
-| 参数名   | 参数说明     | 备注     |
-| -------- | ------------ | -------- |
-| query    | 查询参数     | 可以为空 |
-| pagenum  | 当前页码     | 不能为空 |
-| pagesize | 每页显示条数 | 不能为空 |
-
-- 响应参数
-
-| 参数名       | 参数说明     | 备注                                   |
-| ------------ | ------------ | -------------------------------------- |
-| total        | 总共商品条数 |                                        |
-| pagenum      | 当前商品页数 |                                        |
-| goods_id     | 商品 ID      |                                        |
-| goods_name   | 商品名称     |                                        |
-| goods_price  | 价格         |                                        |
-| goods_number | 数量         |                                        |
-| goods_weight | 重量         | 不能为空                               |
-| goods_state  | 商品状态     | 商品状态 0: 未通过 1: 审核中 2: 已审核 |
-| add_time     | 添加时间     |                                        |
-| upd_time     | 更新时间     |                                        |
-| hot_mumber   | 热销品数量   |                                        |
-| is_promote   | 是否是热销品 |                                        |
-
-- 响应数据
-
-```
-{
-    "data": {
-        "total": 50,
-        "pagenum": "1",
-        "goods": [
-            {
-                "goods_id": 144,
-                "goods_name": "asfdsd",
-                "goods_price": 1,
-                "goods_number": 1,
-                "goods_weight": 1,
-                "goods_state": null,
-                "add_time": 1512954923,
-                "upd_time": 1512954923,
-                "hot_mumber": 0,
-                "is_promote": false
-            }
-        ]
-    },
-    "meta": {
-        "msg": "获取成功",
-        "status": 200
-    }
-}
-```
-
-### 1.8.2. 添加商品
-
-- 请求路径：goods
-- 请求方法：post
-- 请求参数
-
-| 参数名          | 参数说明                                          | 备注     |
-| --------------- | ------------------------------------------------- | -------- |
-| goods_name      | 商品名称                                          | 不能为空 |
-| goods_cat       | 以为','分割的分类列表                             | 不能为空 |
-| goods_price     | 价格                                              | 不能为空 |
-| goods_number    | 数量                                              | 不能为空 |
-| goods_weight    | 重量                                              | 不能为空 |
-| goods_introduce | 介绍                                              | 可以为空 |
-| pics            | 上传的图片临时路径（对象）                        | 可以为空 |
-| attrs           | 商品的参数（数组），包含 `动态参数` 和 `静态属性` | 可以为空 |
-
-- 请求数据
-
-```json
-{
-  "goods_name":"test_goods_name2",
-  "goods_cat": "1,2,3",
-  "goods_price":20,
-  "goods_number":30,
-  "goods_weight":40,
-  "goods_introduce":"abc",
-  "pics":[
-    {"pic":"/tmp_uploads/30f08d52c551ecb447277eae232304b8"}
-    ],
-  "attrs":[
-    {
-      "attr_id":15,
-      "attr_value":"ddd"
-    },
-    {
-      "attr_id":15,
-      "attr_value":"eee"
-    }
-    ]
-}
-```
-
-- 响应参数
-
-| 参数名       | 参数说明                   | 备注                                                         |
-| ------------ | -------------------------- | ------------------------------------------------------------ |
-| total        | 总共商品条数               |                                                              |
-| pagenum      | 当前商品页数               |                                                              |
-| goods_id     | 商品 ID                    |                                                              |
-| goods_cat    | 以为','分割的分类列表      |                                                              |
-| goods_name   | 商品名称                   |                                                              |
-| goods_price  | 价格                       |                                                              |
-| goods_number | 数量                       |                                                              |
-| goods_weight | 重量                       | 不能为空                                                     |
-| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
-| add_time     | 添加时间                   |                                                              |
-| upd_time     | 更新时间                   |                                                              |
-| hot_mumber   | 热销品数量                 |                                                              |
-| is_promote   | 是否是热销品               |                                                              |
-| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
-| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
-
-- 响应数据
-
-```json
-{
-    "data": {
-        "goods_id": 145,
-        "goods_name": "test_goods_name2",
-        "goods_price": 20,
-        "cat_id": 1,
-        "goods_number": 30,
-        "goods_weight": 40,
-        "goods_introduce": "abc",
-        "goods_big_logo": "",
-        "goods_small_logo": "",
-        "goods_state": 1,
-        "add_time": 1512962370,
-        "upd_time": 1512962370,
-        "hot_mumber": 0,
-        "is_promote": false,
-        "pics": [
-            {
-                "pics_id": 397,
-                "goods_id": 145,
-                "pics_big": "uploads/goodspics/big_30f08d52c551ecb447277eae232304b8",
-                "pics_mid": "uploads/goodspics/mid_30f08d52c551ecb447277eae232304b8",
-                "pics_sma": "uploads/goodspics/sma_30f08d52c551ecb447277eae232304b8"
-            }
-        ],
-        "attrs": [
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "ddd",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            },
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "eee",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            }
-        ]
-    },
-    "meta": {
-        "msg": "创建商品成功",
-        "status": 201
-    }
-}
-```
-
-### 1.8.3. 根据 ID 查询商品
-
-- 请求路径：goods/:id
-- 请求方法：get
-- 请求参数
-
-| 参数名 | 参数说明 | 备注                  |
-| ------ | -------- | --------------------- |
-| id     | 商品 ID  | 不能为空`携带在url中` |
-
-- 响应参数
-
-| 参数名       | 参数说明                   | 备注                                                         |
-| ------------ | -------------------------- | ------------------------------------------------------------ |
-| total        | 总共商品条数               |                                                              |
-| pagenum      | 当前商品页数               |                                                              |
-| goods_id     | 商品 ID                    |                                                              |
-| goods_name   | 商品名称                   |                                                              |
-| goods_price  | 价格                       |                                                              |
-| goods_number | 数量                       |                                                              |
-| goods_weight | 重量                       | 不能为空                                                     |
-| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
-| add_time     | 添加时间                   |                                                              |
-| upd_time     | 更新时间                   |                                                              |
-| hot_mumber   | 热销品数量                 |                                                              |
-| is_promote   | 是否是热销品               |                                                              |
-| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
-| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
-
-- 响应数据
-
-```
-{
-    "data": {
-        "goods_id": 145,
-        "goods_name": "test_goods_name2",
-        "goods_price": 20,
-        "goods_number": 30,
-        "goods_weight": 40,
-        "goods_introduce": "abc",
-        "goods_big_logo": "",
-        "goods_small_logo": "",
-        "goods_state": 1,
-        "add_time": 1512962370,
-        "upd_time": 1512962370,
-        "hot_mumber": 0,
-        "is_promote": false,
-        "pics": [
-            {
-                "pics_id": 397,
-                "goods_id": 145,
-                "pics_big": "uploads/goodspics/big_30f08d52c551ecb447277eae232304b8",
-                "pics_mid": "uploads/goodspics/mid_30f08d52c551ecb447277eae232304b8",
-                "pics_sma": "uploads/goodspics/sma_30f08d52c551ecb447277eae232304b8"
-            }
-        ],
-        "attrs": [
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "ddd",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            },
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "eee",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            }
-        ]
-    },
-    "meta": {
-        "msg": "创建商品成功",
-        "status": 201
-    }
-}
-```
-
-### 1.8.4. 编辑提交商品
-
-- 请求路径：goods/:id
-- 请求方法：put
-- 请求参数
-
-| 参数名          | 参数说明                   | 备注                  |
-| --------------- | -------------------------- | --------------------- |
-| id              | 商品 ID                    | 不能为空`携带在url中` |
-| goods_name      | 商品名称                   | 不能为空              |
-| goods_price     | 价格                       | 不能为空              |
-| goods_number    | 数量                       | 不能为空              |
-| goods_weight    | 重量                       | 不能为空              |
-| goods_introduce | 介绍                       | 可以为空              |
-| pics            | 上传的图片临时路径（对象） | 可以为空              |
-| attrs           | 商品的参数（数组）         | 可以为空              |
-
-- 请求数据
-
-```
-{
-  "goods_name":"test_goods_name2",
-  "goods_price":20,
-  "goods_number":30,
-  "goods_weight":40,
-  "goods_introduce":"abc",
-  "pics":[
-    {"pic":"/tmp_uploads/30f08d52c551ecb447277eae232304b8"}
-    ],
-  "attrs":[
-    {
-      "attr_id":15,
-      "attr_value":"ddd"
-    },
-    {
-      "attr_id":15,
-      "attr_value":"eee"
-    }
-    ]
-}
-```
-
-- 响应参数
-
-| 参数名       | 参数说明                   | 备注                                                         |
-| ------------ | -------------------------- | ------------------------------------------------------------ |
-| total        | 总共商品条数               |                                                              |
-| pagenum      | 当前商品页数               |                                                              |
-| goods_id     | 商品 ID                    |                                                              |
-| goods_name   | 商品名称                   |                                                              |
-| goods_price  | 价格                       |                                                              |
-| goods_number | 数量                       |                                                              |
-| goods_weight | 重量                       | 不能为空                                                     |
-| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
-| add_time     | 添加时间                   |                                                              |
-| upd_time     | 更新时间                   |                                                              |
-| hot_mumber   | 热销品数量                 |                                                              |
-| is_promote   | 是否是热销品               |                                                              |
-| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
-| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
-
-- 响应数据
-
-```
-{
-    "data": {
-        "goods_id": 145,
-        "goods_name": "test_goods_name2",
-        "goods_price": 20,
-        "goods_number": 30,
-        "goods_weight": 40,
-        "goods_introduce": "abc",
-        "goods_big_logo": "",
-        "goods_small_logo": "",
-        "goods_state": 1,
-        "add_time": 1512962370,
-        "upd_time": 1512962370,
-        "hot_mumber": 0,
-        "is_promote": false,
-        "pics": [
-            {
-                "pics_id": 397,
-                "goods_id": 145,
-                "pics_big": "uploads/goodspics/big_30f08d52c551ecb447277eae232304b8",
-                "pics_mid": "uploads/goodspics/mid_30f08d52c551ecb447277eae232304b8",
-                "pics_sma": "uploads/goodspics/sma_30f08d52c551ecb447277eae232304b8"
-            }
-        ],
-        "attrs": [
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "ddd",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            },
-            {
-                "goods_id": 145,
-                "attr_id": 15,
-                "attr_value": "eee",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            }
-        ]
-    },
-    "meta": {
-        "msg": "创建商品成功",
-        "status": 201
-    }
-}
-```
-
-### 1.8.5. 删除商品
-
-- 请求路径：goods/:id
-- 请求方法：delete
-- 请求参数
-
-| 参数名 | 参数说明 | 备注                  |
-| ------ | -------- | --------------------- |
-| id     | 商品 ID  | 不能为空`携带在url中` |
-
-- 响应数据
-
-```
-{
-    "data": null,
-    "meta": {
-        "msg": "删除成功",
-        "status": 200
-    }
-}
-```
-
-\###同步商品图片
-
-- 请求路径：goods/:id/pics
-- 请求方法：put
-- 请求参数
-
-| 参数名 | 参数说明     | 备注                                                         |
-| ------ | ------------ | ------------------------------------------------------------ |
-| id     | 商品 ID      | 不能为空`携带在url中`                                        |
-| pics   | 商品图片集合 | 如果有 pics_id 字段会保留该图片，如果没有 pics_id 但是有 pic 字段就会新生成图片数据 |
-
-- 请求数据
-
-```
-;[
-  { pic: 'tmp_uploads/db28f6316835836e97653b5c75e418be.png' },
-  {
-    pics_id: 397,
-    goods_id: 145,
-    pics_big: 'uploads/goodspics/big_30f08d52c551ecb447277eae232304b8',
-    pics_mid: 'uploads/goodspics/mid_30f08d52c551ecb447277eae232304b8',
-    pics_sma: 'uploads/goodspics/sma_30f08d52c551ecb447277eae232304b8'
-  }
-]
-```
-
-- 响应数据
-
-```
-{
-    "data": {
-        "goods_id": 96,
-        "goods_name": "iphoneXX",
-        "goods_price": 2,
-        "goods_number": 22,
-        "goods_weight": 22,
-        "goods_introduce": null,
-        "goods_big_logo": "./uploads/goods/20171113/483a3b8e99e534ec3e4312dbbaee7c9d.jpg",
-        "goods_small_logo": "./uploads/goods/20171113/small_483a3b8e99e534ec3e4312dbbaee7c9d.jpg",
-        "goods_state": 0,
-        "is_del": "1",
-        "add_time": 1510045904,
-        "upd_time": 1512635159,
-        "delete_time": 1512635159,
-        "hot_mumber": 0,
-        "is_promote": false,
-        "pics": [
-            {
-                "pics_id": 383,
-                "goods_id": 96,
-                "pics_big": "uploads/goodspics/big_6f5750132abd3f5b2b93dd722fcde653.jpg",
-                "pics_mid": "uploads/goodspics/mid_6f5750132abd3f5b2b93dd722fcde653.jpg",
-                "pics_sma": "uploads/goodspics/sma_6f5750132abd3f5b2b93dd722fcde653.jpg"
-            }
-        ],
-        "attrs": [
-            {
-                "goods_id": 96,
-                "attr_id": 15,
-                "attr_value": "eee",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            },
-            {
-                "goods_id": 96,
-                "attr_id": 15,
-                "attr_value": "ddd",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            }
-        ]
-    },
-    "meta": {
-        "msg": "更新成功",
-        "status": 200
-    }
-}
-```
-
-\###同步商品属性
-
-- 请求路径：goods/:id/attributes
-- 请求方法：put
-- 请求参数
-
-| 参数名 | 参数说明 | 备注                  |
-| ------ | -------- | --------------------- |
-| id     | 商品 ID  | 不能为空`携带在url中` |
-
-- 请求数据
-
-```
-;[
-  {
-    attr_id: 15,
-    attr_value: 'ddd'
-  },
-  {
-    attr_id: 15,
-    attr_value: 'eee'
-  }
-]
-```
-
-- 响应数据
-
-```
-{
-    "data": {
-        "goods_id": 96,
-        "goods_name": "iphoneXX",
-        "goods_price": 2,
-        "goods_number": 22,
-        "goods_weight": 22,
-        "goods_introduce": null,
-        "goods_big_logo": "./uploads/goods/20171113/483a3b8e99e534ec3e4312dbbaee7c9d.jpg",
-        "goods_small_logo": "./uploads/goods/20171113/small_483a3b8e99e534ec3e4312dbbaee7c9d.jpg",
-        "goods_state": 0,
-        "is_del": "1",
-        "add_time": 1510045904,
-        "upd_time": 1512635159,
-        "delete_time": 1512635159,
-        "hot_mumber": 0,
-        "is_promote": false,
-        "pics": [
-            {
-                "pics_id": 383,
-                "goods_id": 96,
-                "pics_big": "uploads/goodspics/big_6f5750132abd3f5b2b93dd722fcde653.jpg",
-                "pics_mid": "uploads/goodspics/mid_6f5750132abd3f5b2b93dd722fcde653.jpg",
-                "pics_sma": "uploads/goodspics/sma_6f5750132abd3f5b2b93dd722fcde653.jpg"
-            }
-        ],
-        "attrs": [
-            {
-                "goods_id": 96,
-                "attr_id": 15,
-                "attr_value": "eee",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            },
-            {
-                "goods_id": 96,
-                "attr_id": 15,
-                "attr_value": "ddd",
-                "add_price": null,
-                "attr_name": "fffffff",
-                "attr_sel": "many",
-                "attr_write": "list",
-                "attr_vals": ""
-            }
-        ]
-    },
-    "meta": {
-        "msg": "更新成功",
-        "status": 200
-    }
-}
-```
-
-\###商品图片处理必须安装 GraphicsMagick
-
-- linux
-
-```
-apt-get install GraphicsMagick
-```
-
-- Mac OS X
-
-```
-brew install GraphicsMagick
-```
-
-- Windows [点击下载](https://sourceforge.net/projects/graphicsmagick/files/graphicsmagick-binaries/1.3.27/GraphicsMagick-1.3.27-Q8-win64-dll.exe/download)
 
 ## 1.9. 图片上传
 

@@ -25,4 +25,6 @@ public interface ItemMapper {
     void deleteItemInventory(String itemId);
 
     List<Item> getAllItem();
+
+//    List<Item> searchItemList(String keywords);
 }

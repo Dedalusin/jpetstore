@@ -83,7 +83,4 @@ public class CatalogController {
             processProductDescription(product);
         }
     }
-
-
-
 }

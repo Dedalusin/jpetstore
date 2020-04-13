@@ -94,7 +94,12 @@ public class CatalogService {
         itemMapper.deleteItem(itemId);
         itemMapper.deleteItemInventory(itemId);
     }
+
     public List<Item> getAllItem(){
         return itemMapper.getAllItem();
     }
+
+//    public List<Item> searchItemList(String keywords){
+//        return itemMapper.searchItemList(keywords);
+//    }
 }
