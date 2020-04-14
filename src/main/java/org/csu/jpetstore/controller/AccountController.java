@@ -1,6 +1,7 @@
 package org.csu.jpetstore.controller;
 
 import org.csu.jpetstore.domain.Account;
+import org.csu.jpetstore.domain.Cart;
 import org.csu.jpetstore.domain.Product;
 import org.csu.jpetstore.service.AccountService;
 import org.csu.jpetstore.service.CatalogService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Encoder;
 
 import java.util.List;
 
@@ -30,7 +32,9 @@ public class AccountController {
     @PostMapping("signon")
     public String signon(String username, String password, Model model)
     {
-        Account loginAccount = accountService.getAccount(username, password);
+        BASE64Encoder encoder = new BASE64Encoder();
+        String password1 =  encoder.encode(password.getBytes());
+        Account loginAccount = accountService.getAccount(username,password1);
         if(loginAccount == null){
             String msg = "Invalid username or password.  Signon failed.";
             model.addAttribute("msg",msg);
@@ -50,9 +54,10 @@ public class AccountController {
         Account loginAccount = new Account();
         List<Product> myList = null;
         boolean authenticated = false;
-        model.addAttribute("account", loginAccount);
+        model.addAttribute("account", null);
         model.addAttribute("myList", myList);
         model.addAttribute("authenticated", authenticated);
+        model.addAttribute("cart",new Cart());
         return "catalog/main";
     }
 
@@ -77,7 +82,11 @@ public class AccountController {
     //注册
     @PostMapping("newAccount")
     public String newAccount(Account registerAccount,Model model){
+        BASE64Encoder encoder = new BASE64Encoder();
+        String password = encoder.encode(registerAccount.getPassword().getBytes());
+        registerAccount.setPassword(password);
         accountService.insertAccount(registerAccount);
+        model.addAttribute("authenticated",true);
         model.addAttribute("account",registerAccount);
         return "catalog/main";
     }

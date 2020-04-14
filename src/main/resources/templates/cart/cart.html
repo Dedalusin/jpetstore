@@ -15,7 +15,7 @@
     <div id="Catalog">
 
         <h2>Shopping Cart</h2>
-        <form action="/cart/updateCartQuantities" method="post">
+        <form action="/order/newOrderForm" method="post">
             <table id="listOfCart">
                 <tr>
                     <th><b>Item ID</b></th>
@@ -51,16 +51,17 @@
                 <tr>
                     <td colspan="7">
                         <label th:text="'Sub Total:$'+${#numbers.formatDecimal(cart.subTotal,1,2)}" id="totalPrice"></label>
-                        <input type="submit" value="Update Cart">
+<!--                        <input type="submit" value="Update Cart">-->
+                        <input type="submit" value="Proceed to Checkout" style="margin-left: 25%">
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
         </form>
 
-        <a class="Button" th:if="${cart.numberOfItems > 0}" href="/order/newOrderForm">
-            Proceed to Checkout
-        </a>
+<!--        <a class="Button" th:if="${cart.numberOfItems > 0}" href="/order/newOrderForm">-->
+<!--            Proceed to Checkout-->
+<!--        </a>-->
 
         <!-- TODO MyList -->
 

@@ -26,7 +26,7 @@ public class AccountService {
 
     public void insertAccount(Account account) {
         accountMapper.insertAccount(account);
-        accountMapper.insertProfile(account);
+//        accountMapper.insertProfile(account);
         accountMapper.insertSignon(account);
     }
 

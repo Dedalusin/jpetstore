@@ -14,7 +14,7 @@
 
     <div id="Catalog">Please confirm the information below and then
         press continue...
-        <form action="/order/confirmOrder" method="post" th:object="${order}">
+<!--        <form action="/order/confirmOrder" method="post" th:object="${order}">-->
         <table >
             <tr>
                 <th align="center" colspan="2"><font size="4"><b>Order</b></font>
@@ -30,76 +30,76 @@
             </tr>
             <tr>
                 <td>First name:</td>
-                <td th:text="*{billToFirstName}" />
+                <td th:text="${order.billToFirstName}" />
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td th:text="*{billToLastName}" />
+                <td th:text="${order.billToLastName}" />
             </tr>
             <tr>
                 <td>Address 1:</td>
-                <td th:text="*{billAddress1}" />
+                <td th:text="${order.billAddress1}" />
             </tr>
             <tr>
                 <td>Address 2:</td>
-                <td th:text="*{billAddress2}" />
+                <td th:text="${order.billAddress2}" />
             </tr>
             <tr>
                 <td>City:</td>
-                <td th:text="*{billCity}" />
+                <td th:text="${order.billCity}" />
             <tr>
                 <td>State:</td>
-                <td th:text="*{billState}" />
+                <td th:text="${order.billState}" />
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td th:text="*{billZip}" />
+                <td th:text="${order.billZip}" />
             </tr>
             <tr>
                 <td>Country:</td>
-                <td th:text="*{billCountry}" />
+                <td th:text="${order.billCountry}" />
             </tr>
             <tr>
                 <th colspan="2">Shipping Address</th>
             </tr>
             <tr>
                 <td>First name:</td>
-                <td th:text="*{shipToFirstName}" />
+                <td th:text="${order.shipToFirstName}" />
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td th:text="*{shipToLastName}" />
+                <td th:text="${order.shipToLastName}" />
             </tr>
             <tr>
                 <td>Address 1:</td>
-                <td th:text="*{shipAddress1}" />
+                <td th:text="${order.shipAddress1}" />
             </tr>
             <tr>
                 <td>Address 2:</td>
-                <td th:text="*{shipAddress2}" />
+                <td th:text="${order.shipAddress2}" />
             </tr>
             <tr>
                 <td>City:</td>
-                <td th:text="*{shipCity}" />
+                <td th:text="${order.shipCity}" />
             </tr>
             <tr>
                 <td>State:</td>
-                <td th:text="*{shipState}" />
+                <td th:text="${order.shipState}" />
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td th:text="*{shipZip}" />
+                <td th:text="${order.shipZip}" />
             </tr>
             <tr>
                 <td>Country:</td>
-                <td th:text="*{shipCountry}" />
+                <td th:text="${order.shipCountry}" />
             </tr>
 
         </table>
-        <input type="submit" name="confirmed" >Confirmed</a>
-<!--        <a href="/order/confirmOrder" class="Button">Confirmed</a>-->
+<!--        <input type="submit" name="confirmed" VALUE="Confirmed"></a>-->
+        <a href="/order/confirmOrder" class="Button">Confirmed</a>
 
-        </form>
+<!--        </form>-->
     </div>
 
 </div>
