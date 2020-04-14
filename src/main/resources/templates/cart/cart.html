@@ -37,7 +37,7 @@
                     </td>
                     <td th:text="${cartItem.item.product.productId}"></td>
                     <td th:text="${cartItem.item.attribute1}+${cartItem.item.product.name}"></td>
-                    <td th:text="${cartItem.inStock}"></td>
+                    <td id="isEmpty"></td>
                     <td>
                         <input type="text" id="quantity" th:name="${cartItem.item.itemId}" th:value="${cartItem.quantity}" onkeyup="updateQuantity()">
                     </td>
@@ -68,5 +68,6 @@
 </div>
 <div th:replace="common/bottom"></div>
 <script type="text/javascript" src="../js/updatePrice.js" charset = "UTF-8"></script>
+<script type="text/javascript" src="../js/checkInventory.js" charset = "UTF-8"></script>
 </body>
 </html>

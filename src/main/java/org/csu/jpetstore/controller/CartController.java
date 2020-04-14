@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
@@ -73,12 +72,13 @@ public class CartController {
                     cartItems.remove();
                 }
             }catch (Exception e){
-
+                e.printStackTrace();
             }
         }
         model.addAttribute("cart",cart);
         return "cart/cart";
     }
+    //库存
     //提交CART，付款属于Order部分了
 
 }

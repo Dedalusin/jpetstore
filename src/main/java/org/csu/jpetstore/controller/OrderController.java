@@ -3,6 +3,7 @@ package org.csu.jpetstore.controller;
 import org.csu.jpetstore.domain.Account;
 import org.csu.jpetstore.domain.Cart;
 import org.csu.jpetstore.domain.Order;
+import org.csu.jpetstore.service.CatalogService;
 import org.csu.jpetstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    CatalogService catalogService;
     //MyOders的跳转
     @GetMapping("listOrder")
     public String viewOrder(Model model)
