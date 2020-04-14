@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.jpetstore.persistence.SupplierMapper">
+    <select id="getSupplierByUsername" parameterType="String" resultType="Supplier">
+        SELECT
+            SIGNONSUPPLIER.USERNAME,
+            SUPPLIERS.EMAIL,
+            SUPPLIERS.PHONE
+        FROM SUPPLIERS,SIGNONSUPPLIER
+        WHERE SUPPLIERS.USERNAME = #{username}
+            AND SIGNONSUPPLIER.USERNAME = SUPPLIERS.USERNAME
+    </select>
+
+    <select id="getSupplierByUsernameAndPassword" parameterType="Supplier" resultType="Supplier">
+        SELECT
+            SIGNONSUPPLIER.USERNAME,
+            SUPPLIERS.EMAIL,
+            SUPPLIERS.PHONE
+        FROM SUPPLIERS,SIGNONSUPPLIER
+        WHERE SUPPLIERS.USERNAME = #{username}
+            AND SIGNONSUPPLIER.PASSWORD = #{password}
+            AND SIGNONSUPPLIER.USERNAME = SUPPLIERS.USERNAME
+    </select>
+
+    <insert id="insertSupplier" parameterType="SUPPLIER">
+        INSERT INTO SUPPLIERS
+            (USERNAME,EMAIL,PHONE)
+        VALUES(#{username},#{email},#{phone})
+    </insert>
+    <insert id="insertSignon" parameterType="Supplier">
+        INSERT INTO SIGNONSUPPLIER
+            (PASSWORD,USERNAME)
+        VALUES (#{password}, #{username})
+    </insert>
+    <update id="updateSupplier" parameterType="Supplier">
+        UPDATE SUPPLIERS SET
+            EMAIL = #{email},
+            PHONE = #{phone}
+        WHERE USERNAME = #{username}
+    </update>
+    <update id="updateSignon" parameterType="Supplier">
+        UPDATE SIGNONSUPPLIER SET
+            PASSWORD = #{password}
+        WHERE USERNAME = #{username}
+    </update>
+</mapper>
