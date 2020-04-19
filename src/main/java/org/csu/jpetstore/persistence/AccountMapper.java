@@ -3,6 +3,8 @@ package org.csu.jpetstore.persistence;
 import org.csu.jpetstore.domain.Account;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AccountMapper {
     Account getAccountByUsername(String username);
@@ -20,4 +22,8 @@ public interface AccountMapper {
     void updateProfile(Account account);
 
     void updateSignon(Account account);
+
+    List<Account> getAllAccount();
+
+    void editAccount(Account account);
 }

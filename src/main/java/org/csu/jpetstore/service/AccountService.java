@@ -7,6 +7,8 @@ import org.csu.jpetstore.persistence.SupplierMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
     @Autowired
@@ -64,4 +66,7 @@ public class AccountService {
         supplierMapper.updateSupplier(supplier);
         supplierMapper.updateSignon(supplier);
     }
+    public List<Account> getAllAccount(){return accountMapper.getAllAccount();}
+
+    public void editAccount(Account account){accountMapper.editAccount(account);}
 }

@@ -65,7 +65,7 @@ public class OrderService {
     public List<Order> getOrdersByUsername(String username) {
         return orderMapper.getOrdersByUsername(username);
     }
-
+    public List<Order> getAllOrder(){return orderMapper.getAllOrder();}
     public int getNextId(String name) {
         Sequence sequence = new Sequence(name, -1);
         sequence = (Sequence) sequenceMapper.getSequence(sequence);
@@ -79,5 +79,14 @@ public class OrderService {
     }
     public List<Order> getListOrder(String username){
         return orderMapper.getOrdersByUsername(username);
+    }
+
+    public List<LineItem> getOrderInfo(int orderId){return orderMapper.getOrderInfo(orderId);}
+
+    public void changeStatus(int orderId,String status){
+        Order order=new Order();
+        order.setOrderId(orderId);
+        order.setStatus(status);
+        orderMapper.changeState(order);
     }
 }

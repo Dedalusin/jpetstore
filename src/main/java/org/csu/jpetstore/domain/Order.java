@@ -37,6 +37,7 @@ public class Order implements Serializable {
   private String cardType;
   private String locale;
   private String status;
+
   private boolean confirmed=false;
   private List<LineItem> lineItems = new ArrayList<LineItem>();
   public void setConfirmed(){confirmed=true;}

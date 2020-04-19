@@ -1,11 +1,14 @@
 package org.csu.jpetstore.BMSController;
 
 import org.csu.jpetstore.domain.Account;
+import org.csu.jpetstore.domain.SimpleAccount;
 import org.csu.jpetstore.domain.Supplier;
 import org.csu.jpetstore.service.AccountService;
 import org.csu.jpetstore.utils.ResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bms/account")
@@ -14,7 +17,7 @@ public class BMSAccountController {
     public AccountService accountService;
     @PostMapping("/login")
     public ResultFactory login(@RequestParam("username") String username,@RequestParam("password") String password){
-        Account loginAccount=accountService.getAccount(username, password);
+        Supplier loginAccount=accountService.getSupplier(username, password);
         if(loginAccount!=null){
             return ResultFactory.successResult(loginAccount,"登录成功");
         }
@@ -45,9 +48,20 @@ public class BMSAccountController {
             return ResultFactory.successResult(null,"账号可行");
         }
     }
-    @PostMapping("/editAccount")    //重复密码用js验证吧
-    public ResultFactory editAccount(@RequestBody Supplier supplier){
+    @PutMapping("/editSupplier")    //重复密码用js验证吧
+    public ResultFactory editSupplier(@RequestBody Supplier supplier){
         accountService.updateSupplier(supplier);
         return ResultFactory.successResult(supplier,"成功");
+    }
+    @GetMapping("/viewAccount")
+    public ResultFactory viewAccount(){
+        List<Account> accountList=accountService.getAllAccount();
+        return ResultFactory.successResult(accountList,"查询成功");
+    }
+    @PutMapping("/editAccount")
+    public ResultFactory editAccount(@RequestBody SimpleAccount simpleAccount){ //不知道json转化为对象需不需要所有的属性赋值，所以用了一个简单的account对象
+        Account account=Account.parse(simpleAccount);
+        accountService.editAccount(account);
+        return ResultFactory.successResult(simpleAccount,"修改成功");
     }
 }
