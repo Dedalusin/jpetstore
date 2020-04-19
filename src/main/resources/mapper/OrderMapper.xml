@@ -75,7 +75,8 @@
 
   <select id="getOrderInfo" parameterType="int" resultType="LineItem">
     SELECT
-        ORDERID,
+        LINENUM,
+        ITEMID,
         UNITPRICE,
         QUANTITY
     FROM LINEITEM

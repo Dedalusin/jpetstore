@@ -1,5 +1,7 @@
 package org.csu.jpetstore.BMSController;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.csu.jpetstore.domain.Account;
 import org.csu.jpetstore.domain.SimpleAccount;
 import org.csu.jpetstore.domain.Supplier;
@@ -54,9 +56,11 @@ public class BMSAccountController {
         return ResultFactory.successResult(supplier,"成功");
     }
     @GetMapping("/viewAccount")
-    public ResultFactory viewAccount(){
+    public ResultFactory viewAccount(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize){
+        PageHelper.startPage(pagenum, pageSize);
         List<Account> accountList=accountService.getAllAccount();
-        return ResultFactory.successResult(accountList,"查询成功");
+        PageInfo<Account> pageInfo = new PageInfo<>(accountList);
+        return ResultFactory.successResult(pageInfo,"查询成功");
     }
     @PutMapping("/editAccount")
     public ResultFactory editAccount(@RequestBody SimpleAccount simpleAccount){ //不知道json转化为对象需不需要所有的属性赋值，所以用了一个简单的account对象
