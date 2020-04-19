@@ -36,14 +36,14 @@ public class BMSAccountController {
             return ResultFactory.successResult(accountService.getSupplier(username),"注册成功");
         }
         else{
-            return ResultFactory.failedResult(50010,"注册失败");
+            return ResultFactory.failedResult(50010,"账号已存在，注册失败");
         }
     }
     @GetMapping("/usernameIsExist")
     public ResultFactory check(@RequestParam("username")String username){
         boolean result=accountService.supplierUsernameIsExist(username);
         if(result){
-            return ResultFactory.failedResult(50010,"账号已存在");
+            return ResultFactory.failedResult(422,"账号已存在");
         }else{
             return ResultFactory.successResult(null,"账号可行");
         }
@@ -62,6 +62,6 @@ public class BMSAccountController {
     public ResultFactory editAccount(@RequestBody SimpleAccount simpleAccount){ //不知道json转化为对象需不需要所有的属性赋值，所以用了一个简单的account对象
         Account account=Account.parse(simpleAccount);
         accountService.editAccount(account);
-        return ResultFactory.successResult(simpleAccount,"修改成功");
+        return ResultFactory.successResult(null,"修改成功");
     }
 }
