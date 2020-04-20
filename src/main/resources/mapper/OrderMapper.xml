@@ -89,6 +89,12 @@
     WHERE ORDERID=#{orderId}
   </update>
 
+    <update id="sendstatus" parameterType="order">
+    UPDATE ORDERSTATUS
+    SET SENDSTATUS=#{sendstatus}
+    WHERE ORDERID=#{orderId}
+  </update>
+
   <select id="getAllOrder" resultType="order">
     SELECT
       BILLADDR1 AS billAddress1,

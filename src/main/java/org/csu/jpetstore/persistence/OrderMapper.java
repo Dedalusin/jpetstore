@@ -1,6 +1,5 @@
 package org.csu.jpetstore.persistence;
 
-import org.csu.jpetstore.domain.Account;
 import org.csu.jpetstore.domain.LineItem;
 import org.csu.jpetstore.domain.Order;
 import org.springframework.stereotype.Repository;
@@ -23,4 +22,5 @@ public interface OrderMapper {
 
     void changeState(Order order);
 
+    void sendstatus(Order order);
 }

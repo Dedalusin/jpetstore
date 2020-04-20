@@ -37,7 +37,7 @@ public class Order implements Serializable {
   private String cardType;
   private String locale;
   private String status;
-
+ private int sendstatus;
   private boolean confirmed=false;
   private List<LineItem> lineItems = new ArrayList<LineItem>();
   public void setConfirmed(){confirmed=true;}
@@ -248,6 +248,14 @@ public class Order implements Serializable {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public int getSendstatus() {
+    return sendstatus;
+  }
+
+  public void setSendstatus(int sendstatus) {
+    this.sendstatus = sendstatus;
   }
 
   public void setLineItems(List<LineItem> lineItems) {
