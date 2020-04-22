@@ -12,7 +12,7 @@
       <el-row :gutter="20">
         <el-col :span="6">
           <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable @clear="getUserList">
-            <el-button slot="append" icon="el-icon-search" @click="getUserList"></el-button>
+            <el-button slot="append" icon="el-icon-search" @click="searchUser(queryInfo.query)"></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -298,6 +298,21 @@ export default {
       if (res.meta.status !== 200) return this.$message.error('删除用户失败！')
       this.$message.success('删除用户成功！')
       this.getUserList()
+    },
+    async searchUser (keywords) {
+      await this.getUserList()
+      let newList = []
+      let total = 0
+      let lowKeywords = keywords.toLowerCase()
+      this.userList.forEach(item => {
+        let username = item.username.toLowerCase()
+        if (username.indexOf(lowKeywords) !== -1) {
+          newList.push(item)
+          total++
+        }
+      })
+      this.userList = newList
+      this.total = total
     }
   }
 }

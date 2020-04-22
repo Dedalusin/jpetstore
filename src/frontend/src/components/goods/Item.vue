@@ -11,7 +11,7 @@
     <el-card>
       <el-row>
         <el-col>
-          <el-button type="primary" @click="showAddItemDialog">添加分类</el-button>
+          <el-button type="primary" @click="showAddItemDialog">上架商品</el-button>
         </el-col>
        </el-row>
       <el-table :data="itemList" stripe style="width: 75%">
