@@ -15,8 +15,6 @@ const Product = () => import(/* webpackChunkName: "Cate_Params" */ '../component
 const Item = () => import(/* webpackChunkName: "Cate_Params" */ '../components/goods/Item.vue')
 
 const GoodsList = () => import(/* webpackChunkName: "GoodsList_Add" */ '../components/goods/List.vue')
-
-
 const Order = () => import(/* webpackChunkName: "Order_Report" */ '../components/order/Order.vue')
 
 Vue.use(VueRouter)
@@ -51,8 +49,10 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/login' || to.path === '/register') return next()
   // TODO 获取token
   // const tokenStr = window.sessionStorage.getItem('token')
+  const tokenStr = window.sessionStorage.getItem('token')
   // TODO 没有token, 强制跳转到登录页
-  // if (!tokenStr) return next('/login')
+  console.log(tokenStr)
+  if (!tokenStr || tokenStr === 'undefined') return next('/login')
   next()
 })
 

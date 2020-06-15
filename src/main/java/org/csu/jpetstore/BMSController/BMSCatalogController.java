@@ -2,6 +2,7 @@ package org.csu.jpetstore.BMSController;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.csu.jpetstore.annotation.JwtToken;
 import org.csu.jpetstore.domain.Category;
 import org.csu.jpetstore.domain.Item;
 import org.csu.jpetstore.domain.Product;
@@ -18,7 +19,9 @@ public class BMSCatalogController {
     @Autowired
     private CatalogService catalogService;
 
+
     @GetMapping("/categories")
+//    @JwtToken
     public ResultFactory viewCategory(@RequestParam(value = "pagenum")int pagenum,@RequestParam(value = "pagesize")int pageSize) {
 //        JSONObject data = new JSONObject();
 //        System.out.println(params.toString());

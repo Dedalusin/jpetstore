@@ -143,7 +143,7 @@ export default {
       })
       console.log(res)
       if (res.status !== 200) {
-        return this.$message.error('获取商品分类失败！')
+        return this.$message.error('获取商品分类失败！请刷新页面重试')
       }
       // 给数据列表赋值
       this.cateList = res.data.list

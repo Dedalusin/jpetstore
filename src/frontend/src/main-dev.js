@@ -20,19 +20,31 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 import axios from 'axios'
+// window.sessionStorage.setItem('user', '{}')
 // 配置请求根路径
 // 本机地址
 axios.defaults.baseURL = 'http://127.0.0.1:80/bms'
-
+// axios.defaults.headers.common['token'] = window.sessionStorage.getItem('token')
 // 在request 拦截器中, 展示进度条 NProgress.start()
 // 请求在到达服务器之前，先会调用use中的这个回调函数来添加请求头信息
 axios.interceptors.request.use(config => {
   NProgress.start()
-  // console.log(config)
+  console.log(config)
   // 为请求头对象，添加token验证的Authorization字段
-  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // config.headers.Authorization = JSON.parse(window.sessionStorage.getItem('user')).token
+  config.headers.common['token'] = window.sessionStorage.getItem('token')
   // 在最后必须 return config
   return config
+})
+axios.interceptors.response.use(res => {
+  if (res.data.status === 200) {
+    console.log(res)
+    return res
+  } else if (res.data.status === 40001) {
+    console.log(res.data.status)
+    window.alert('token失效或过期')
+    location.href = '/login'
+  }
 })
 // response 拦截器中,  隐藏进度条NProgress.done()
 axios.interceptors.response.use(config => {

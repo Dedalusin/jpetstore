@@ -75,7 +75,7 @@ export default {
         if (!valid) return false
         // this.$http.post('register', this.registerForm): 返回值为promise
         // 返回值为promise，可加await简化操作 相应的也要加async，js的语法，记住就是了
-        const { data: res } = await this.$http.post('register', this.registerForm)
+        const { data: res } = await this.$http.post('/account/register', this.registerForm)
         // console.log(res)
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')

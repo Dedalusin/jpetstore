@@ -644,6 +644,7 @@ body>#Banner {
     padding: 1ex;
     background:#FFFFFF;
     text-align:center;
+    width:97%;
 }
 
 #Catalog input[type="submit"]{

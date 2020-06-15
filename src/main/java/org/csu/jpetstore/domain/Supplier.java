@@ -5,6 +5,7 @@ public class Supplier {
     private String password;
     private String email;
     private String phone;
+    private String token;
 
     public String getUsername() {
         return username;
@@ -37,4 +38,8 @@ public class Supplier {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getToken() { return token; }
+
+    public void setToken(String token) { this.token = token; }
 }
