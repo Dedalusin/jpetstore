@@ -41,16 +41,16 @@
               <i class="iconfont icon-shangpin"></i>
               <span>商品管理</span>
             </template>
-            <el-menu-item index="/goods" @click="saveNavState('/goods')">
-              <template slot="title">
-                <i class="el-icon-menu"></i>
-                <span>商品列表</span>
-              </template>
-            </el-menu-item>
             <el-menu-item index="/categories" @click="saveNavState('/users')">
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span>商品信息</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/goods" @click="saveNavState('/goods')">
+              <template slot="title">
+                <i class="el-icon-menu"></i>
+                <span>商品列表</span>
               </template>
             </el-menu-item>
           </el-submenu>

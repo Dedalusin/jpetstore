@@ -63,7 +63,7 @@
         :total="total"
       ></el-pagination>
     </el-card>
-    <!-- 添加分类的对话框 -->
+    <!-- 上架商品的对话框 -->
     <el-dialog title="Add Item" :visible.sync="addItemDialogVisible" width="50%" @close="itemDialogClosed">
       <el-form
         :model="itemForm"
@@ -101,8 +101,8 @@
         <el-button type="primary" @click="addItem">确 定</el-button>
       </span>
     </el-dialog>
-    <!-- 编辑分类的对话框 -->
-    <el-dialog title="Add Item" :visible.sync="editItemDialogVisible" width="50%" @close="itemDialogClosed">
+    <!-- 编辑商品的对话框 -->
+    <el-dialog title="Edit Item" :visible.sync="editItemDialogVisible" width="50%" @close="itemDialogClosed">
       <el-form
         :model="itemForm"
         :rules="itemFormRules"
@@ -146,7 +146,7 @@
 export default {
   data () {
     return {
-      supplierId: -1,
+      supplierId: 1,
       // 商品分类数据
       itemList: [],
       // 查询条件
@@ -185,7 +185,8 @@ export default {
     }
   },
   created () {
-    this.supplierId = JSON.parse(window.sessionStorage.getItem('user')).id
+    // this.supplierId = JSON.parse(window.sessionStorage.getItem('user')).id
+    this.supplierId = 1
     this.queryInfo.productId = this.$route.params.productId
     console.log(this.supplierId)
     this.getItem()
@@ -218,6 +219,7 @@ export default {
       this.itemForm.supplierId = this.supplierId
       this.itemForm.productId = this.$route.params.productId
       console.log(this.itemForm.productId)
+      console.log(this.itemForm.supplierId)
       // 再打开对话框
       this.addItemDialogVisible = true
     },
@@ -272,8 +274,8 @@ export default {
       this.$refs.editItemFormRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.put('catalog/items', this.itemForm)
-        if (res.status !== 200) return this.$message.error('更新分类名失败！')
-        this.$message.success('更新分类名成功！')
+        if (res.status !== 200) return this.$message.error('更新失败！')
+        this.$message.success('更新成功！')
         this.getItem()
         this.editItemDialogVisible = false
       })

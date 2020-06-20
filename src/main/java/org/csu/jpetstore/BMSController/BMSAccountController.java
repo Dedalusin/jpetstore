@@ -20,7 +20,7 @@ public class BMSAccountController {
     @Autowired
     public AccountService accountService;
     @PostMapping("/login")
-    @JwtToken(required = false) //这个require其实没意义
+    @JwtToken(required = false)
     public ResultFactory login(@RequestParam("username") String username,@RequestParam("password") String password){
         Supplier loginAccount=accountService.getSupplier(username, password);
         if(loginAccount!=null){

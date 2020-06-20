@@ -89,7 +89,7 @@
           <el-input v-model="productForm.name"></el-input>
         </el-form-item>
         <el-form-item label="Description：" prop="description">
-          <el-input v-model="productForm.description"></el-input>
+          <el-input v-model="productForm.description" :disabled=true></el-input>
         </el-form-item>
         <el-form-item label="Image：">
           <span v-html="productForm.descriptionImage"></span>

@@ -68,7 +68,7 @@
       </span>
     </el-dialog>
     <!-- 编辑分类的对话框 -->
-    <el-dialog title="Add Category" :visible.sync="editCateDialogVisible" width="50%" @close="addCateDialogClosed">
+    <el-dialog title="Edit Category" :visible.sync="editCateDialogVisible" width="50%" @close="addCateDialogClosed">
       <el-form
         :model="addCateForm"
         :rules="addCateFormRules"
@@ -82,7 +82,7 @@
           <el-input v-model="addCateForm.name"></el-input>
         </el-form-item>
         <el-form-item label="Description：" prop="description">
-          <el-input v-model="addCateForm.description"></el-input>
+          <el-input :disabled="true" v-model="addCateForm.description"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">

@@ -182,7 +182,12 @@ export default {
       },
       // 修改用户 TODO
       editDialogVisible: false,
-      editUserForm: {},
+      editUserForm: {
+        username: '',
+        password: '',
+        email: '',
+        mobile: ''
+      },
       // 编辑用户表单验证 TODO
       editUserFormRules: {
         // TODO 我不想验证了
